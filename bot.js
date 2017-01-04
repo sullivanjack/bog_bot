@@ -33,21 +33,24 @@ function weather_command(loc){
 	// degreeType: F or C
 
 	weather.find({search: loc, degreeType: 'F'}, function(err, result) {
-		if(err) console.log(err);
-		var k = JSON.stringify(result, null, 2);
-		var l = JSON.parse(k);
-		
-		// This gets returned as "" rather than "0" for some reason.
- 		var precip = l[0].forecast[0].precip;
-		if(precip === ""){
-			precip = "0";
-		}
+		if(err) {
+			console.log(err);
+		}else {
+			var k = JSON.stringify(result, null, 2);
+			var l = JSON.parse(k);
 			
-		botResponse = "High/Low: " + l[0].forecast[0].high + "°F/" + l[0].forecast[0].low + "°F, " + l[0].forecast[0].skytextday + " with a " + precip + " chance of precipatation";
-		postMessage(botResponse);
-		
-		botResponse = "The forecast for: " + l[0].forecast[0].day + ", " + l[0].forecast[0].date + " in " + loc + " is ";
-		postMessage(botResponse);
+			// This gets returned as "" rather than "0" for some reason.
+			var precip = l[0].forecast[0].precip;
+			if(precip === ""){
+				precip = "0";
+			}
+				
+			botResponse = "High/Low: " + l[0].forecast[0].high + "°F/" + l[0].forecast[0].low + "°F, " + l[0].forecast[0].skytextday + " with a " + precip + " chance of precipatation";
+			postMessage(botResponse);
+			
+			botResponse = "The forecast for: " + l[0].forecast[0].day + ", " + l[0].forecast[0].date + " in " + loc + " is ";
+			postMessage(botResponse);
+		}
 	});
 }
 
