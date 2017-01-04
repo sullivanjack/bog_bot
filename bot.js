@@ -15,9 +15,10 @@ function respond() {
 		console.log(request.text);
 		
 		var location = request.text.substring(14, request.text.length);
+		console.log(location);
 		weather_command(location);
 		
-		console.log(location);
+		
 
 		this.res.end();
 	} else {
