@@ -7,19 +7,19 @@ function respond() {
     console.log(process.versions);
 	// Commands Here:
 	weatherRegex = /^\/stan weather/;
-
+	wallRegex = /^/wall/;
+	
 	if(request.text && weatherRegex.test(request.text)) {
 		this.res.writeHead(200);
-		
-		
-		console.log(request.text);
-		
+		console.log(request.text);	
 		var location = request.text.substring(14, request.text.length);
 		console.log(location);
-		weather_command(location);
-		
-		
-
+		// weather_command(location); -- under construction and idk what to do anymore.
+	
+		this.res.end();
+	} else if(request.text && wallRegex.test(request.text)) {
+		this.res.writeHead(200);
+		postImage("@Mexico", "https://d1sui4xqepm0ps.cloudfront.net/is-this-meme-racist-full.jpg?image=cdn");
 		this.res.end();
 	} else {
 		console.log("don't care");
@@ -36,7 +36,7 @@ function weather_command(loc){
 	// search:     location name or zipcode
 	// degreeType: F or C
 	
-	
+	/*
 	weather(loc, 'f').then( function(info){
 		botReposnse = info.item.title;
 		postMessage(botReposnse);
@@ -49,7 +49,7 @@ function weather_command(loc){
 		
 	
 		
-	})/*.catch( function(err) {
+	}).catch( function(err) {
 		console.log(err);
 		throw err; 	
 	});*/
@@ -118,5 +118,45 @@ function postMessage(message) {
 	botReq.end(JSON.stringify(body));
 }
 
+fucntion postImage(message, imageURL){
+	var botResponse, options, body, botReq;
+
+	options = {
+		hostname: 'api.groupme.com',
+		path: '/v3/bots/post',
+		method: 'POST'
+	};
+
+	body = {
+		"bot_id" : botID,
+		"text" : message,
+		"attachments" : [
+			{
+				"type"  : "image",
+				"url"   : imageURL;
+			}
+		]
+	};
+
+	console.log('sending image w/ message ' + message + ' to ' + botID);
+
+	botReq = HTTPS.request(options, function(res) {
+		if(res.statusCode == 202) {
+		//neat
+		} else {
+			console.log('rejecting bad status code ' + res.statusCode);
+		}
+	});
+
+	botReq.on('error', function(err) {
+		console.log('error posting message '  + JSON.stringify(err));
+	});
+	
+	botReq.on('timeout', function(err) {
+		console.log('timeout posting message '  + JSON.stringify(err));
+	});
+	
+	botReq.end(JSON.stringify(body));
+}
 
 exports.respond = respond;
