@@ -10,6 +10,7 @@ function respond() {
   var commandOne = "/stan weather";
  
   if(request.text.startsWith(commandOne)) {
+	console.log("This is good.");
     this.res.writeHead(200);
     postMessage();
     this.res.end();
@@ -23,10 +24,13 @@ function respond() {
 function postMessage() {
   var botResponse, options, body, botReq;
 
-  weather({location: 'dallas'}, function(data) {
-		botResponse = data.temp;
-  });
+  console.log("This is very good.");
+ // weather({location: 'dallas'}, function(data) {
+	//	botResponse = data.temp;
+  //});
 
+  botResponse = "Weather command enabled";
+  
   options = {
     hostname: 'api.groupme.com',
     path: '/v3/bots/post',
