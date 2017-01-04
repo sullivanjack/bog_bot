@@ -51,7 +51,7 @@ function weather_command(loc){
 	// degreeType: F or C
 	
 	
-	weather(loc, 'f').then( function(info){
+	weather(loc, 'f').then(info =>{
 		botReposnse = info.item.title;
 		postMessage(botReposnse);
 		
@@ -63,7 +63,7 @@ function weather_command(loc){
 		
 	
 		
-	}).catch( function(err) {
+	}).catch( err => {
 		console.log(err);
 	});
 	
