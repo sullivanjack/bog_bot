@@ -1,8 +1,9 @@
-var http, director, cool, bot, router, server, port, weather;
+var http, director, cool, bot, router, server, port, weather, giphy;
 
 http        = require('http');
 director    = require('director');
 weather		= require('yahoo-weather');
+giphy = require('giphy-api')();
 bot=require('./bot.js');
 
 router = new director.http.Router({

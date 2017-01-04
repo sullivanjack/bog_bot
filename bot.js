@@ -1,5 +1,6 @@
 var HTTPS = require('https');
 var weather = require('yahoo-weather');
+var giphy = require('giphy-api')();
 var botID = process.env.BOT_ID;
 
 function respond() {
@@ -9,6 +10,7 @@ function respond() {
 	weatherRegex = /^\/stan weather/;
 	wallRegex = /^\/wall/;
 	buckIsCommunistRegex = /^\/redscare/;
+	gifRegex = /^\/gif/;
 	
 	if(request.text && weatherRegex.test(request.text)) {
 		this.res.writeHead(200);
@@ -23,9 +25,15 @@ function respond() {
 		postImage("@Mexico", "https://d1sui4xqepm0ps.cloudfront.net/is-this-meme-racist-full.jpg?image=cdn");
 		this.res.end();
 		
-	}else if(request.text && buckIsCommunistRegex.test(request.text)){ 
+	} else if(request.text && buckIsCommunistRegex.test(request.text)) { 
 		this.res.writeHead(200);
 		postMessage("@Andrew Buck is a communist");
+		this.res.end();
+		
+	} else if(request.text && gifRegex.test(request.text)){
+		this.res.writeHead(200);
+		var key = request.text.substring(5, request.text.length);
+		gif_command(key);
 		this.res.end();
 	} else {
 		console.log("don't care");
@@ -87,6 +95,14 @@ function weather_command(loc){
 
 		}
 	}); */
+}
+
+function gif_command(keyword){
+	giphy.search(keyword, function(err, info) {
+		var k =  Object.keys(info.data).length;
+		var t = randomIntFromInterval(0, k-1);
+		postImage("", info.data[t].embed_url);
+	});
 }
 
 function postMessage(message) {
@@ -163,6 +179,10 @@ function postImage(message, imageURL){
 	});
 	
 	botReq.end(JSON.stringify(body));
+}
+
+function randomIntFromInterval(min,max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
 }
 
 exports.respond = respond;

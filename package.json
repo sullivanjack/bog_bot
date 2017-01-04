@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "director": "",
-	"yahoo-weather": "2.2.2"
+	"yahoo-weather": "2.2.2",
+	"giphy-api": "1.2.3"
   },
   "engines": {
     "node": "0.10.x"
