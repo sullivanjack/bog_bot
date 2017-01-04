@@ -101,8 +101,8 @@ function gif_command(keyword){
 	giphy.search(keyword, function(err, info) {
 		var k =  Object.keys(info.data).length;
 		var t = randomIntFromInterval(0, k-1);
-		postImage("", info.data[t].bitly_gif_url);
-		console.log(info.data[t].bitly_gif_url);
+		postImage("", info.data[t].images.downsized.url);
+		console.log(info.data[t].images.downsized.url);
 	});
 }
 
