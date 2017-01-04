@@ -44,9 +44,9 @@ function weather_command(loc){
 			var k = JSON.stringify(result, null, 2);
 			var l = JSON.parse(k);
 			
-			if(l === null){
-				console.log("Bad :( "))
-			}else {
+			//if(){
+				//console.log("Bad :( "))
+			//}else {
 				// This gets returned as "" rather than "0" for some reason.
 				var precip = l[0].forecast[1].precip;
 				if(precip === ""){
@@ -58,7 +58,7 @@ function weather_command(loc){
 					
 				botResponse = "High/Low: " + l[0].forecast[1].high + "°F/" + l[0].forecast[1].low + "°F, " + l[0].forecast[1].skytextday + " with a " + precip + " chance of precipatation";
 				postMessage(botResponse);
-			}
+			//}
 
 		}
 	});
