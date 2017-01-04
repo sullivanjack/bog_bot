@@ -8,6 +8,7 @@ function respond() {
 	// Commands Here:
 	weatherRegex = /^\/stan weather/;
 	wallRegex = /^\/wall/;
+	buckIsCommunistRegex = /^\/redscare/;
 	
 	if(request.text && weatherRegex.test(request.text)) {
 		this.res.writeHead(200);
@@ -15,11 +16,16 @@ function respond() {
 		var location = request.text.substring(14, request.text.length);
 		console.log(location);
 		// weather_command(location); -- under construction and idk what to do anymore.
-	
 		this.res.end();
-	} else if(request.text && wallRegex.test(request.text)) {
+		
+	} else if(request.text && wallRegex.test(request.text)) { // WALL
 		this.res.writeHead(200);
 		postImage("@Mexico", "https://d1sui4xqepm0ps.cloudfront.net/is-this-meme-racist-full.jpg?image=cdn");
+		this.res.end();
+		
+	}else if(request.text && buckIsCommunistRegex.test(request.text)){ 
+		this.res.writeHead(200);
+		postMessage("@Andrew Buck is a communist");
 		this.res.end();
 	} else {
 		console.log("don't care");
