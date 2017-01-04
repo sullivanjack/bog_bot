@@ -29,7 +29,7 @@ function respond() {
 }
 
 function weather_command(loc){
-	//var botResponse;
+	var botResponse;
 
 	// Options:
 	// search:     location name or zipcode
@@ -37,11 +37,15 @@ function weather_command(loc){
 	
 	
 	weather(loc, 'f').then(info => {
-		// Do what you want with `info`!
-		//console.log(info)
-		postMessage(info.item.title);
-		postMessage("Currently: " + info.item.condition.text + " " + info.item.condition.temp + "°F");
-		postMessage(info.item.forecast[0].date + ": has a high/low of " + info.item.forecast[0].high + "°F/" + info.item.forecast[0].low +"°F");
+		botReposnse = info.item.title;
+		postMessage(botReposnse);
+		
+		botReposnse = "Currently: " + info.item.condition.text + " " + info.item.condition.temp + "°F";
+		postMessage(botReposnse);
+		
+		botReposnse = info.item.forecast[0].date + ": has a high/low of " + info.item.forecast[0].high + "°F/" + info.item.forecast[0].low +"°F";
+		postMessage(botReposnse);
+		
 	}).catch(err => {
 	  console.log(err);
 	});
@@ -95,7 +99,7 @@ function postMessage(message) {
 		if(res.statusCode == 202) {
 		//neat
 		} else {
-		console.log('rejecting bad status code ' + res.statusCode);
+			console.log('rejecting bad status code ' + res.statusCode);
 		}
 	});
 

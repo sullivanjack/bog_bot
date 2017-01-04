@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.1.2",
-  "description": "A sample Node.js app using Express 4",
+  "name": "BOGBot",
+  "version": "0.0.1",
+  "description": "Group Me Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
