@@ -7,7 +7,7 @@ function respond() {
 	var request = JSON.parse(this.req.chunks[0]),
 
 	// Commands Here:
-	weatherRegex = /^\/stan weather/;
+	weatherRegex = /^\/weather/;
 	wallRegex = /^\/wall/;
 	buckIsCommunistRegex = /^\/redscare/;
 	gifRegex = /^\/gif/;
@@ -15,7 +15,7 @@ function respond() {
 	if(request.text && weatherRegex.test(request.text)) {
 		this.res.writeHead(200);
 		console.log(request.text);	
-		var location = request.text.substring(14, request.text.length);
+		var location = request.text.substring(9, request.text.length);
 		console.log(location);
 		weather_command(location); 
 		this.res.end();
@@ -100,8 +100,8 @@ function gif_command(keyword){
 	giphy.search(keyword, function(err, info) {
 		var k =  Object.keys(info.data).length;
 		var t = randomIntFromInterval(0, k-1);
-		postImage("", info.data[t].images.downsized.url);
-		console.log(info.data[t].images.downsized.url);
+		postImage("", info.data[t].images.downsized_small.mp4);
+		console.log(info.data[t].images.downsized_small.mp4);
 	});
 }
 
