@@ -133,7 +133,7 @@ fucntion postImage(message, imageURL){
 		"attachments" : [
 			{
 				"type"  : "image",
-				"url"   : imageURL;
+				"url"   : imageURL,
 			}
 		]
 	};
