@@ -28,7 +28,11 @@ function postMessage() {
 	//	botResponse = data.temp;
   //});
 
-  botResponse = "Weather command enabled";
+	var botResponse;
+	
+	weather({location: 'Melbourne'}, function(data) {
+		botResponse = data.temp;
+	});
   
   options = {
     hostname: 'api.groupme.com',
