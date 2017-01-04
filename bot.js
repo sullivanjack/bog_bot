@@ -42,7 +42,6 @@ function weather_command(loc){
 		postMessage(info.item.title);
 		postMessage("Currently: " + info.item.condition.text + " " + info.item.condition.temp + "°F");
 		postMessage(info.item.forecast[0].date + ": has a high/low of " + info.item.forecast[0].high + "°F/" + info.item.forecast[0].low +"°F");
-		conso
 	}).catch(err => {
 	  console.log(err);
 	});
