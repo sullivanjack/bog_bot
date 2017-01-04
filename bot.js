@@ -7,7 +7,7 @@ function respond() {
 
 	// Commands Here:
 	weatherRegex = /^\/stan weather/;
-	wallRegex = /^/wall/;
+	wallRegex = /^\/wall/;
 	
 	if(request.text && weatherRegex.test(request.text)) {
 		this.res.writeHead(200);
