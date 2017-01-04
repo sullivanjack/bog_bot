@@ -118,7 +118,7 @@ function postMessage(message) {
 	botReq.end(JSON.stringify(body));
 }
 
-fucntion postImage(message, imageURL){
+function postImage(message, imageURL){
 	var botResponse, options, body, botReq;
 
 	options = {
