@@ -46,7 +46,7 @@ function weather_command(loc){
 		botResponse = "The forecast for: " + l[0].forecast[0].day + ", " + l[0].forecast[0].date + "in " + loc + " is ";
 		postMessage(botResponse);
 		
-		botResponse = "High/Low: " + l[0].forecast[0].high + "°F/" + l[0].forecast[0].low + "°F, " + l[0].forecast[0].skytextday + " with a " + precip + " chance of precipatation"";
+		botResponse = "High/Low: " + l[0].forecast[0].high + "°F/" + l[0].forecast[0].low + "°F, " + l[0].forecast[0].skytextday + " with a " + precip + " chance of precipatation";
 		postMessage(botResponse);
 	});
 }
