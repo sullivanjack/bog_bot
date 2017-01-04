@@ -1,7 +1,5 @@
 var HTTPS = require('https');
-
-var weather = require('weather-js');
-
+var weather = require('yahoo-weather');
 var botID = process.env.BOT_ID;
 
 function respond() {
@@ -31,13 +29,27 @@ function respond() {
 }
 
 function weather_command(loc){
-	var botResponse;
+	//var botResponse;
 
 	// Options:
 	// search:     location name or zipcode
 	// degreeType: F or C
+	
+	
+	weather(loc, 'f').then(info => {
+		// Do what you want with `info`!
+		//console.log(info)
+		postMessage(info.item.title);
+		postMessage("Currently: " + info.item.condition.text + " " + info.item.condition.temp + "°F");
+		postMessage(info.item.forecast[0].date + ": has a high/low of " + info.item.forecast[0].high + "°F/" + info.item.forecast[0].low +"°F");
+		conso
+	}).catch(err => {
+	  console.log(err);
+	});
+	
+	
 
-	weather.find({search: loc, degreeType: 'F'}, function(err, result) {
+	/*weather.find({search: loc, degreeType: 'F'}, function(err, result) {
 		if(err) {
 			console.log(err);
 		}else {
@@ -61,7 +73,7 @@ function weather_command(loc){
 			//}
 
 		}
-	});
+	}); */
 }
 
 function postMessage(message) {
