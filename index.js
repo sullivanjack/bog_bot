@@ -1,8 +1,9 @@
-var http, director, cool, bot, router, server, port;
+var http, director, cool, bot, router, server, port, weather;
 
 http        = require('http');
 director    = require('director');
 cool        = require('cool-ascii-faces');
+weather		= require('weather');
 bot         = require('./bot.js');
 
 router = new director.http.Router({
@@ -29,5 +30,5 @@ server.listen(port);
 
 function ping() {
   this.res.writeHead(200);
-  this.res.end("Hey, I'm Cool Guy.");
+  this.res.end("The BOG bot is up and running...");
 }

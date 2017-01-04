@@ -1,13 +1,15 @@
 var HTTPS = require('https');
-var cool = require('cool-ascii-faces');
+
+
+var weather = require('weather');
 
 var botID = process.env.BOT_ID;
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /^guy23$/;
-
-  if(request.text && botRegex.test(request.text)) {
+  var request = JSON.parse(this.req.chunks[0]);
+  var commandOne = "/stan weather";
+ 
+  if(request.startsWith(commandOne)) {
     this.res.writeHead(200);
     postMessage();
     this.res.end();
@@ -21,7 +23,9 @@ function respond() {
 function postMessage() {
   var botResponse, options, body, botReq;
 
-  botResponse = cool();
+  weather({location: 'dallas'}, function(data) {
+		botResponse = data.temp;
+  });
 
   options = {
     hostname: 'api.groupme.com',
