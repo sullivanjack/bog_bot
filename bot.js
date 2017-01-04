@@ -36,7 +36,7 @@ function weather_command(loc){
 	// degreeType: F or C
 	
 	
-	weather(loc, 'f').then(info => {
+	weather(loc, 'f').then( function(info){
 		botReposnse = info.item.title;
 		postMessage(botReposnse);
 		
@@ -46,7 +46,7 @@ function weather_command(loc){
 		botReposnse = info.item.forecast[0].date + ": has a high/low of " + info.item.forecast[0].high + "°F/" + info.item.forecast[0].low +"°F";
 		postMessage(botReposnse);
 		
-	}).catch(err => {
+	}).catch( function(err) {
 	  console.log(err);
 	});
 	
