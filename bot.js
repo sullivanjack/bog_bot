@@ -7,8 +7,10 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var commandOne = "/stan weather";
-  var k = request.text.startsWith(commandOne);
+  var k = request.text;
+  var w = k.startsWith(commandOne);
   console.log(k);
+  console.log(w);
  
   if(request.text) {
 	console.log("This is good.");
