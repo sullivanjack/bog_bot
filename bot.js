@@ -13,8 +13,13 @@ function respond() {
 	if(request.text && weatherRegex.test(request.text)) {
 		this.res.writeHead(200);
 		
+		
+		console.log(request.text);
+		
 		var location = request.text.substring(14, request.text.length);
 		weather_command(location);
+		
+		console.log(location);
 
 		this.res.end();
 	} else {
@@ -39,18 +44,21 @@ function weather_command(loc){
 			var k = JSON.stringify(result, null, 2);
 			var l = JSON.parse(k);
 			
-			// This gets returned as "" rather than "0" for some reason.
-			var precip = l[0].forecast[1].precip;
-			if(precip === ""){
-				precip = "0";
+			if(l === null){
+				console.log("Bad :( "))
+			}else {
+				// This gets returned as "" rather than "0" for some reason.
+				var precip = l[0].forecast[1].precip;
+				if(precip === ""){
+					precip = "0";
+				}
+					
+				botResponse = "The forecast for: " + l[0].forecast[1].day + ", " + l[0].forecast[1].date + " in " + l[0].current.observationpoint + " is ";
+				postMessage(botResponse);	
+					
+				botResponse = "High/Low: " + l[0].forecast[1].high + "°F/" + l[0].forecast[1].low + "°F, " + l[0].forecast[1].skytextday + " with a " + precip + " chance of precipatation";
+				postMessage(botResponse);
 			}
-				
-			botResponse = "The forecast for: " + l[0].forecast[1].day + ", " + l[0].forecast[1].date + " in " + l[0].current.observationpoint + " is ";
-			postMessage(botResponse);	
-				
-			botResponse = "High/Low: " + l[0].forecast[1].high + "°F/" + l[0].forecast[1].low + "°F, " + l[0].forecast[1].skytextday + " with a " + precip + " chance of precipatation";
-			postMessage(botResponse);
-			
 
 		}
 	});
