@@ -5,14 +5,10 @@ var weather = require('weather');
 var botID = process.env.BOT_ID;
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]);
-  var commandOne = "/stan weather";
-  var k = request.text;
-  var w = k.startsWith(commandOne);
-  console.log(k);
-  console.log(w);
+  var request = JSON.string(this.req.chunks[0]),
+  botRegex = /^\/stan weather/;
  
-  if(request.text) {
+  if(request.text && botRegex.test(request.text)) {
 	console.log("This is good.");
     this.res.writeHead(200);
     postMessage();
