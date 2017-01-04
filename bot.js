@@ -47,13 +47,12 @@ function weather_command(loc){
 		botReposnse = info.item.forecast[0].date + ": has a high/low of " + info.item.forecast[0].high + "°F/" + info.item.forecast[0].low +"°F";
 		postMessage(botReposnse);
 		
-		return new Promise();
+	
 		
-	}).catch( function(err) {
+	})/*.catch( function(err) {
 		console.log(err);
 		throw err; 	
-		return new Promise();
-	});
+	});*/
 	
 	
 
