@@ -40,16 +40,18 @@ function weather_command(loc){
 			var l = JSON.parse(k);
 			
 			// This gets returned as "" rather than "0" for some reason.
-			var precip = l[0].forecast[0].precip;
+			var precip = l[0].forecast[1].precip;
 			if(precip === ""){
 				precip = "0";
 			}
 				
-			botResponse = "High/Low: " + l[0].forecast[0].high + "°F/" + l[0].forecast[0].low + "°F, " + l[0].forecast[0].skytextday + " with a " + precip + " chance of precipatation";
+			botResponse = "The forecast for: " + l[0].forecast[1].day + ", " + l[0].forecast[1].date + " in " + l[0].current.observationpoint + " is ";
+			postMessage(botResponse);	
+				
+			botResponse = "High/Low: " + l[0].forecast[1].high + "°F/" + l[0].forecast[1].low + "°F, " + l[0].forecast[1].skytextday + " with a " + precip + " chance of precipatation";
 			postMessage(botResponse);
 			
-			botResponse = "The forecast for: " + l[0].forecast[0].day + ", " + l[0].forecast[0].date + " in " + loc + " is ";
-			postMessage(botResponse);
+
 		}
 	});
 }
