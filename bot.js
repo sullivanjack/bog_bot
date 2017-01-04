@@ -17,7 +17,7 @@ function respond() {
 		console.log(request.text);	
 		var location = request.text.substring(14, request.text.length);
 		console.log(location);
-		// weather_command(location); -- under construction and idk what to do anymore.
+		weather_command(location); 
 		this.res.end();
 		
 	} else if(request.text && wallRegex.test(request.text)) { // WALL
@@ -50,7 +50,7 @@ function weather_command(loc){
 	// search:     location name or zipcode
 	// degreeType: F or C
 	
-	/*
+	
 	weather(loc, 'f').then( function(info){
 		botReposnse = info.item.title;
 		postMessage(botReposnse);
@@ -65,8 +65,7 @@ function weather_command(loc){
 		
 	}).catch( function(err) {
 		console.log(err);
-		throw err; 	
-	});*/
+	});
 	
 	
 
