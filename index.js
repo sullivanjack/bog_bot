@@ -3,7 +3,7 @@ var http, director, cool, bot, router, server, port, weather;
 http        = require('http');
 director    = require('director');
 weather		= require('yahoo-weather');
-bot         = require('./bot.js');
+bot=require('/bot.js');
 
 router = new director.http.Router({
   '/' : {
