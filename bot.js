@@ -38,10 +38,12 @@ function postMessage() {
 		if(err) console.log(err);
 		var k = JSON.stringify(result, null, 2);
 		var l = JSON.parse(k);
-		botResponse = "The forecast for: " + l[0].forecast[0].day + ", " + l[0].forecast[0].date + " is /n/n High/Low: "
+		botResponse = "'The forecast for: " + l[0].forecast[0].day + ", " + l[0].forecast[0].date + " is /n/n High/Low: "
 			+ l[0].forecast[0].high + "°F/" + l[0].forecast[0].low + "°F, " + l[0].forecast[0].skytextday + " with a " 
-			+ l[0].forecast[0].precip + " chance of precipatation";
+			+ l[0].forecast[0].precip + " chance of precipatation'";
 	});
+	
+		console.log(botResponse);
   
 	  options = {
 		hostname: 'api.groupme.com',
