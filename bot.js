@@ -1,6 +1,5 @@
 var HTTPS = require('https');
 
-
 var weather = require('weather');
 
 var botID = process.env.BOT_ID;
@@ -8,8 +7,10 @@ var botID = process.env.BOT_ID;
 function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var commandOne = "/stan weather";
+  var k = request.text.startsWith(commandOne);
+  console.log(k);
  
-  if(request.text.startsWith(commandOne)) {
+  if(request.text) {
 	console.log("This is good.");
     this.res.writeHead(200);
     postMessage();
