@@ -9,7 +9,7 @@ function respond() {
   var request = JSON.parse(this.req.chunks[0]);
   var commandOne = "/stan weather";
  
-  if(request.startsWith(commandOne)) {
+  if(request.text.startsWith(commandOne)) {
     this.res.writeHead(200);
     postMessage();
     this.res.end();
