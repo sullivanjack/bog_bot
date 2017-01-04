@@ -3,7 +3,7 @@ var http, director, cool, bot, router, server, port, weather;
 http        = require('http');
 director    = require('director');
 cool        = require('cool-ascii-faces');
-weather		= require('weather');
+weather		= require('weather-js');
 bot         = require('./bot.js');
 
 router = new director.http.Router({
