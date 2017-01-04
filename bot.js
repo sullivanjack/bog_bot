@@ -4,7 +4,7 @@ var botID = process.env.BOT_ID;
 
 function respond() {
 	var request = JSON.parse(this.req.chunks[0]),
-    console.log(process.versions);
+
 	// Commands Here:
 	weatherRegex = /^\/stan weather/;
 	wallRegex = /^/wall/;
